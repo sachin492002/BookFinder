@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link  type= "text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>Book Finder</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+   <div class="form-group">
+   <form method="post">
+   <input type="text" name="search" required>
+   <input type="submit" value="Search">
+    </form>
+    </div>
+   {% if books | length != 0 %}
+   <div id="demo">
+  {% for u in books %}
+    <div class="books">
+    <div class="img"><img src="{{u.image }}"/></div>
+
+     <div class="details1" style="margin-left: 40px"> <h3 style="color: red">{{u.title}}</h3>
+         <h2 style="color: #48e3bb;font-size: 14px">{{ u.author }}</h2>
+         <h3 style="margin-right: 15px;font-size: 18px;color: rgb(71, 102, 102)" >Genres : {{ u.genre }}</h3>
+       <h1 style="margin-left: 10px; font-size:14px;font-weight: lighter;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4; -webkit-box-orient: vertical;">{{ u.description }}</h1>
+     </div>
+
+     <h3 style="font-family:  Helvetica, Arial, Verdana, sans-serif;font-size: medium;font-weight: lighter">{{u.year | int}}</h3>
+    </div>
+  {% endfor %}
+   </div>
+
+{% else %}
+<div id="demo" style="align-items: center;display: flex;justify-content: center">No search results.</div>
+{% endif %}
+{#<form action="/search" method="get">#}
+{#  <input type="text" name="search" value="{{ query }}" >#}
+{#  <button name="search" type="submit">Relavant</button>#}
+{#</form>#}
+</div>
+</body>
+<script>
+
+</script>
+</html>
+
